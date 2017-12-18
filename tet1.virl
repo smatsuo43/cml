@@ -1,0 +1,580 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<topology xmlns="http://www.cisco.com/VIRL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="0.95" xsi:schemaLocation="http://www.cisco.com/VIRL https://raw.github.com/CiscoVIRL/schema/v0.95/virl.xsd">
+    <extensions>
+        <entry key="AutoNetkit.address_family" type="String">v4</entry>
+        <entry key="AutoNetkit.enable_routing" type="Boolean">false</entry>
+    </extensions>
+    <node name="flat-1" type="ASSET" subtype="FLAT" location="331,189">
+        <interface id="0" name="link0"/>
+    </node>
+    <node name="csr1000v-1" type="SIMPLE" subtype="CSR1000v" location="747,204">
+        <extensions>
+            <entry key="AutoNetkit.mgmt_ip" type="string"></entry>
+            <entry key="Auto-generate config" type="Boolean">false</entry>
+            <entry key="config" type="String">!
+! Last configuration change at 08:08:39 UTC Wed Nov 29 2017
+!
+version 16.6
+service timestamps debug datetime msec
+service timestamps log datetime msec
+platform qfp utilization monitor load 80
+no platform punt-keepalive disable-kernel-core
+platform console serial
+!
+hostname csr1000v-1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+vrf definition Mgmt-intf
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+ exit-address-family
+!
+enable secret 4 tnhtc92DXBhelxjYk8LWJrPV36S2i4ntXrpb4RFmfqY
+enable password cisco
+!
+no aaa new-model
+!
+!
+!
+!
+!
+!
+!
+!
+ip nbar http-services
+!
+!
+!
+no ip domain lookup
+ip domain name virl.info
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+! 
+! 
+! 
+! 
+!
+ipv6 unicast-routing
+!
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-408719771
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-408719771
+ revocation-check none
+ rsakeypair TP-self-signed-408719771
+!
+!
+crypto pki certificate chain TP-self-signed-408719771
+ certificate self-signed 01 nvram:IOS-Self-Sig#1.cer
+!
+!
+!
+!
+!
+!
+!
+!
+!
+license udi pid CSR1000V sn 97X1G1FSJJ8
+license accept end user agreement
+license boot level ax
+diagnostic bootup level minimal
+spanning-tree extend system-id
+!
+!
+!
+username cisco privilege 15 secret 5 $1$9PE.$wp1G/.UAclt6.DOs6rlyD.
+!
+redundancy
+!
+!
+!
+!
+!
+!
+!
+class-map match-all WEBUI-MULTIMEDIA_CONFERENCING-DSCP
+ match dscp af41 
+class-map match-all WEBUI-BROADCAST_VIDEO-NBAR
+ match protocol attribute traffic-class broadcast-video
+ match protocol attribute business-relevance business-relevant
+class-map match-all WEBUI-VOICE-NBAR
+ match protocol attribute traffic-class voip-telephony
+ match protocol attribute business-relevance business-relevant
+class-map match-all WEBUI-BULK_DATA-NBAR
+ match protocol attribute traffic-class bulk-data
+ match protocol attribute business-relevance business-relevant
+class-map match-all WEBUI-SIGNALING-NBAR
+ match protocol attribute traffic-class signaling
+ match protocol attribute business-relevance business-relevant
+class-map match-all WEBUI-NETWORK_CONTROL-DSCP
+ match dscp cs6 
+class-map match-all WEBUI-SCAVENGER-NBAR
+ match protocol attribute business-relevance business-irrelevant
+class-map match-all WEBUI-SCAVENGER-DSCP
+ match dscp cs1 
+class-map match-all WEBUI-NETWORK_CONTROL-NBAR
+ match protocol attribute traffic-class network-control
+ match protocol attribute business-relevance business-relevant
+class-map match-all WEBUI-SIGNALING-DSCP
+ match dscp cs3 
+class-map match-all WEBUI-BULK_DATA-DSCP
+ match dscp af11 
+class-map match-all WEBUI-BROADCAST_VIDEO-DSCP
+ match dscp cs5 
+class-map match-all WEBUI-MULTIMEDIA_CONFERENCING-NBAR
+ match protocol attribute traffic-class multimedia-conferencing
+ match protocol attribute business-relevance business-relevant
+class-map match-all WEBUI-VOICE-DSCP
+ match dscp ef 
+class-map match-all WEBUI-NETWORK_MANAGEMENT-NBAR
+ match protocol attribute traffic-class ops-admin-mgmt
+ match protocol attribute business-relevance business-relevant
+class-map match-all WEBUI-MULTIMEDIA_STREAMING-DSCP
+ match dscp af31 
+class-map match-all WEBUI-REALTIME_INTERACTIVE-NBAR
+ match protocol attribute traffic-class real-time-interactive
+ match protocol attribute business-relevance business-relevant
+class-map match-all WEBUI-TRANSACTIONAL_DATA-DSCP
+ match dscp af21 
+class-map match-all WEBUI-REALTIME_INTERACTIVE-DSCP
+ match dscp cs4 
+class-map match-all WEBUI-TRANSACTIONAL_DATA-NBAR
+ match protocol attribute traffic-class transactional-data
+ match protocol attribute business-relevance business-relevant
+class-map match-all WEBUI-NETWORK_MANAGEMENT-DSCP
+ match dscp cs2 
+class-map match-all WEBUI-MULTIMEDIA_STREAMING-NBAR
+ match protocol attribute traffic-class multimedia-streaming
+ match protocol attribute business-relevance business-relevant
+!
+policy-map WEBUI-MARKING-IN
+ class WEBUI-VOICE-NBAR
+  set dscp ef
+ class WEBUI-BROADCAST_VIDEO-NBAR
+  set dscp cs5
+ class WEBUI-REALTIME_INTERACTIVE-NBAR
+  set dscp cs4
+ class WEBUI-MULTIMEDIA_CONFERENCING-NBAR
+  set dscp af41
+ class WEBUI-MULTIMEDIA_STREAMING-NBAR
+  set dscp af31
+ class WEBUI-SIGNALING-NBAR
+  set dscp cs3
+ class WEBUI-NETWORK_CONTROL-NBAR
+  set dscp cs6
+ class WEBUI-NETWORK_MANAGEMENT-NBAR
+  set dscp cs2
+ class WEBUI-TRANSACTIONAL_DATA-NBAR
+  set dscp af21
+ class WEBUI-BULK_DATA-NBAR
+  set dscp af11
+ class WEBUI-SCAVENGER-NBAR
+  set dscp cs1
+ class class-default
+  set dscp default
+policy-map WEBUI-QUEUING-OUT
+ class WEBUI-VOICE-DSCP
+  priority percent 10
+ class WEBUI-BROADCAST_VIDEO-DSCP
+  priority percent 10
+ class WEBUI-REALTIME_INTERACTIVE-DSCP
+  priority percent 13
+ class WEBUI-NETWORK_CONTROL-DSCP
+  bandwidth percent 2 
+ class WEBUI-SIGNALING-DSCP
+  bandwidth percent 2 
+ class WEBUI-NETWORK_MANAGEMENT-DSCP
+  bandwidth percent 3 
+ class WEBUI-MULTIMEDIA_CONFERENCING-DSCP
+  bandwidth percent 10 
+  fair-queue
+  random-detect dscp-based
+ class WEBUI-MULTIMEDIA_STREAMING-DSCP
+  bandwidth percent 10 
+  fair-queue
+  random-detect dscp-based
+ class WEBUI-TRANSACTIONAL_DATA-DSCP
+  bandwidth percent 10 
+  fair-queue
+  random-detect dscp-based
+ class WEBUI-BULK_DATA-DSCP
+  bandwidth percent 4 
+  fair-queue
+  random-detect dscp-based
+ class WEBUI-SCAVENGER-DSCP
+  bandwidth percent 1 
+ class class-default
+  bandwidth percent 25 
+  fair-queue
+  random-detect dscp-based
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+! 
+!
+!
+interface GigabitEthernet1
+ description OOB Management
+ vrf forwarding Mgmt-intf
+ ip address 10.255.1.42 255.255.0.0
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet2
+ description to iosv-1
+ ip address 172.20.200.1 255.255.255.0
+ ip nbar protocol-discovery
+ negotiation auto
+ no mop enabled
+ no mop sysid
+ service-policy input WEBUI-MARKING-IN
+ service-policy output WEBUI-QUEUING-OUT
+!
+interface GigabitEthernet3
+ description to iosv-1
+ ip address 172.20.201.254 255.255.255.0
+ ip nbar protocol-discovery
+ negotiation auto
+ no mop enabled
+ no mop sysid
+ service-policy input WEBUI-MARKING-IN
+ service-policy output WEBUI-QUEUING-OUT
+!
+router ospf 1
+ redistribute connected subnets
+ network 172.20.0.0 0.0.255.255 area 20
+!
+!
+virtual-service csr_mgmt
+!
+ip forward-protocol nd
+ip http server
+ip http authentication local
+ip http secure-server
+ip route 0.0.0.0 0.0.0.0 172.20.200.254
+!
+ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+ip ssh server algorithm authentication password
+ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+line con 0
+ password cisco
+ stopbits 1
+line vty 0 4
+ exec-timeout 720 0
+ password cisco
+ login local
+ transport input telnet ssh
+!
+!
+!
+!
+!
+!
+end</entry>
+        </extensions>
+        <interface id="0" name="GigabitEthernet2" ipv4="10.0.0.5" netPrefixLenV4="30"/>
+        <interface id="1" name="GigabitEthernet3"/>
+    </node>
+    <node name="iosv-1" type="SIMPLE" subtype="IOSv" location="530,196">
+        <extensions>
+            <entry key="AutoNetkit.mgmt_ip" type="string"></entry>
+            <entry key="Auto-generate config" type="Boolean">false</entry>
+            <entry key="config" type="String">!
+! Last configuration change at 08:13:48 UTC Wed Nov 29 2017
+!
+version 15.6
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname iosv-1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+vrf definition Mgmt-intf
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+ exit-address-family
+!
+enable password cisco
+!
+no aaa new-model
+ethernet lmi ce
+!
+!
+!
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+ip domain name virl.info
+ip cef
+ipv6 unicast-routing
+ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+username cisco privilege 15 secret 5 $1$92b9$H.OjwrtByJB.vQ645/abp0
+!
+redundancy
+!
+no cdp run
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0
+ description OOB Management
+ vrf forwarding Mgmt-intf
+ ip address 10.255.1.43 255.255.0.0
+ duplex full
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/1
+ description to flat-1
+ ip address 172.31.128.94 255.255.0.0
+ duplex full
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/2
+ description to csr1000v-1
+ ip address 172.20.200.254 255.255.255.0
+ duplex full
+ speed auto
+ media-type rj45
+!
+router ospf 1
+ redistribute connected subnets
+ network 172.20.0.0 0.0.255.255 area 20
+ network 172.31.0.0 0.0.255.255 area 0
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+ip ssh server algorithm authentication password
+!
+!
+!
+!
+control-plane
+!
+banner exec `
+**************************************************************************
+* IOSv - Cisco Systems Confidential                                      *
+*                                                                        *
+* Supplemental End User License Restrictions                             *
+*                                                                        *
+* This IOSv software is provided AS-IS without warranty of any kind.     *
+* Under no circumstances may this software be used separate from         *
+* the Cisco Modeling Labs Software that this software was provided       *
+*  with, or deployed or used as part of a production environment.        *
+*                                                                        *
+* By using the software, you agree to abide by the terms and             *
+* conditions of the Cisco End User License Agreement at                  *
+* http://www.cisco.com/go/eula.                                          *
+*                                                                        *
+* Unauthorized use or distribution of this software is expressly         *
+* prohibited.                                                            *
+**************************************************************************
+`
+banner incoming `
+**************************************************************************
+* IOSv - Cisco Systems Confidential                                      *
+*                                                                        *
+* Supplemental End User License Restrictions                             *
+*                                                                        *
+* This IOSv software is provided AS-IS without warranty of any kind.     *
+* Under no circumstances may this software be used separate from         *
+* the Cisco Modeling Labs Software that this software was provided       *
+*  with, or deployed or used as part of a production environment.        *
+*                                                                        *
+* By using the software, you agree to abide by the terms and             *
+* conditions of the Cisco End User License Agreement at                  *
+* http://www.cisco.com/go/eula.                                          *
+*                                                                        *
+* Unauthorized use or distribution of this software is expressly         *
+* prohibited.                                                            *
+**************************************************************************
+`
+banner login `
+**************************************************************************
+* IOSv - Cisco Systems Confidential                                      *
+*                                                                        *
+* Supplemental End User License Restrictions                             *
+*                                                                        *
+* This IOSv software is provided AS-IS without warranty of any kind.     *
+* Under no circumstances may this software be used separate from         *
+* the Cisco Modeling Labs Software that this software was provided       *
+*  with, or deployed or used as part of a production environment.        *
+*                                                                        *
+* By using the software, you agree to abide by the terms and             *
+* conditions of the Cisco End User License Agreement at                  *
+* http://www.cisco.com/go/eula.                                          *
+*                                                                        *
+* Unauthorized use or distribution of this software is expressly         *
+* prohibited.                                                            *
+**************************************************************************
+`
+!
+line con 0
+ password cisco
+line aux 0
+line vty 0 4
+ exec-timeout 720 0
+ password cisco
+ login local
+ transport input telnet ssh
+!
+no scheduler allocate
+!
+end</entry>
+        </extensions>
+        <interface id="0" name="GigabitEthernet0/1"/>
+        <interface id="1" name="GigabitEthernet0/2" ipv4="10.0.0.6" netPrefixLenV4="30"/>
+    </node>
+    <node name="server-1" type="SIMPLE" subtype="server" location="972,206">
+        <extensions>
+            <entry key="Auto-generate config" type="Boolean">false</entry>
+            <entry key="config" type="String">#cloud-config
+bootcmd:
+- ln -s -t /etc/rc.d /etc/rc.local
+hostname: server-1
+manage_etc_hosts: true
+runcmd:
+- start ttyS0
+- systemctl start getty@ttyS0.service
+- systemctl start rc-local
+- sed -i '/^\s*PasswordAuthentication\s\+no/d' /etc/ssh/sshd_config
+- echo "UseDNS no" &gt;&gt; /etc/ssh/sshd_config
+- service ssh restart
+- service sshd restart
+users:
+- default
+- gecos: User configured by VIRL Configuration Engine 0.23.10
+  lock-passwd: false
+  name: cisco
+  plain-text-passwd: cisco
+  shell: /bin/bash
+  ssh-authorized-keys:
+  - VIRL-USER-SSH-PUBLIC-KEY
+  sudo: ALL=(ALL) ALL
+write_files:
+- path: /etc/init/ttyS0.conf
+  owner: root:root
+  content: |
+    # ttyS0 - getty
+    # This service maintains a getty on ttyS0 from the point the system is
+    # started until it is shut down again.
+    start on stopped rc or RUNLEVEL=[12345]
+    stop on runlevel [!12345]
+    respawn
+    exec /sbin/getty -L 115200 ttyS0 vt102
+  permissions: '0644'
+- path: /etc/systemd/system/dhclient@.service
+  content: |
+    [Unit]
+    Description=Run dhclient on %i interface
+    After=network.target
+    [Service]
+    Type=oneshot
+    ExecStart=/sbin/dhclient %i -pf /var/run/dhclient.%i.pid -lf /var/lib/dhclient/dhclient.%i.lease
+    RemainAfterExit=yes
+  owner: root:root
+  permissions: '0644'
+- path: /etc/rc.local
+  owner: root:root
+  permissions: '0755'
+  content: |-
+    #!/bin/sh
+    ifconfig eth1 up 172.20.201.1 netmask 255.255.255.0
+    exit 0
+</entry>
+        </extensions>
+        <interface id="0" name="eth1" ipv4="10.0.0.6" netPrefixLenV4="30"/>
+    </node>
+    <annotations/>
+    <connection dst="/virl:topology/virl:node[3]/virl:interface[1]" src="/virl:topology/virl:node[1]/virl:interface[1]"/>
+    <connection dst="/virl:topology/virl:node[2]/virl:interface[1]" src="/virl:topology/virl:node[3]/virl:interface[2]"/>
+    <connection dst="/virl:topology/virl:node[4]/virl:interface[1]" src="/virl:topology/virl:node[2]/virl:interface[2]"/>
+</topology>

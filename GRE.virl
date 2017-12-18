@@ -1,0 +1,862 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<topology xmlns="http://www.cisco.com/VIRL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="0.95" xsi:schemaLocation="http://www.cisco.com/VIRL https://raw.github.com/CiscoVIRL/schema/v0.95/virl.xsd">
+    <extensions>
+        <entry key="management_lxc" type="Boolean">false</entry>
+        <entry key="management_network" type="String">user</entry>
+    </extensions>
+    <node name="RT1" type="SIMPLE" subtype="IOSv" location="340,229">
+        <extensions>
+            <entry key="Auto-generate config" type="Boolean">false</entry>
+            <entry key="config" type="String">!
+! Last configuration change at 11:13:54 UTC Mon Nov 13 2017
+!
+version 15.6
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname RT1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+ethernet lmi ce
+!
+!
+!
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+ip cef
+no ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+redundancy
+!
+no cdp run
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback1
+ ip address 1.1.1.1 255.255.255.255
+ ip ospf 1 area 0
+!
+interface Tunnel1
+ ip address 100.0.0.1 255.255.255.0
+ keepalive 10 3
+ tunnel source 1.1.1.1
+ tunnel destination 2.2.2.2
+!
+interface GigabitEthernet0/0
+ ip address 10.255.0.217 255.255.0.0
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/1
+ ip address 10.0.1.1 255.255.255.0
+ ip ospf network point-to-point
+ ip ospf 1 area 0
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/2
+ ip address 192.168.1.254 255.255.255.0
+ duplex auto
+ speed auto
+ media-type rj45
+!
+router ospf 1
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+ip route 192.168.2.0 255.255.255.0 Tunnel1
+!
+!
+!
+!
+control-plane
+!
+banner exec `
+**************************************************************************
+* IOSv - Cisco Systems Confidential                                      *
+*                                                                        *
+* Supplemental End User License Restrictions                             *
+*                                                                        *
+* This IOSv software is provided AS-IS without warranty of any kind.     *
+* Under no circumstances may this software be used separate from         *
+* the Cisco Modeling Labs Software that this software was provided       *
+*  with, or deployed or used as part of a production environment.        *
+*                                                                        *
+* By using the software, you agree to abide by the terms and             *
+* conditions of the Cisco End User License Agreement at                  *
+* http://www.cisco.com/go/eula.                                          *
+*                                                                        *
+* Unauthorized use or distribution of this software is expressly         *
+* prohibited.                                                            *
+**************************************************************************
+`
+banner incoming `
+**************************************************************************
+* IOSv - Cisco Systems Confidential                                      *
+*                                                                        *
+* Supplemental End User License Restrictions                             *
+*                                                                        *
+* This IOSv software is provided AS-IS without warranty of any kind.     *
+* Under no circumstances may this software be used separate from         *
+* the Cisco Modeling Labs Software that this software was provided       *
+*  with, or deployed or used as part of a production environment.        *
+*                                                                        *
+* By using the software, you agree to abide by the terms and             *
+* conditions of the Cisco End User License Agreement at                  *
+* http://www.cisco.com/go/eula.                                          *
+*                                                                        *
+* Unauthorized use or distribution of this software is expressly         *
+* prohibited.                                                            *
+**************************************************************************
+`
+banner login `
+**************************************************************************
+* IOSv - Cisco Systems Confidential                                      *
+*                                                                        *
+* Supplemental End User License Restrictions                             *
+*                                                                        *
+* This IOSv software is provided AS-IS without warranty of any kind.     *
+* Under no circumstances may this software be used separate from         *
+* the Cisco Modeling Labs Software that this software was provided       *
+*  with, or deployed or used as part of a production environment.        *
+*                                                                        *
+* By using the software, you agree to abide by the terms and             *
+* conditions of the Cisco End User License Agreement at                  *
+* http://www.cisco.com/go/eula.                                          *
+*                                                                        *
+* Unauthorized use or distribution of this software is expressly         *
+* prohibited.                                                            *
+**************************************************************************
+`
+!
+line con 0
+line aux 0
+line vty 0 4
+ login
+ transport input none
+!
+no scheduler allocate
+!
+end</entry>
+        </extensions>
+        <interface id="0" name="GigabitEthernet0/1"/>
+        <interface id="1" name="GigabitEthernet0/2"/>
+    </node>
+    <node name="Core" type="SIMPLE" subtype="IOSv" location="468,231">
+        <extensions>
+            <entry key="Auto-generate config" type="Boolean">false</entry>
+            <entry key="config" type="String">!
+! Last configuration change at 11:12:39 UTC Mon Nov 13 2017
+!
+version 15.6
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname Core
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+ethernet lmi ce
+!
+!
+!
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+ip cef
+no ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+redundancy
+!
+no cdp run
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0
+ ip address 10.255.0.214 255.255.0.0
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/1
+ ip address 10.0.1.9 255.255.255.0
+ ip ospf network point-to-point
+ ip ospf 1 area 0
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/2
+ ip address 10.0.2.9 255.255.255.0
+ ip ospf network point-to-point
+ ip ospf 1 area 0
+ duplex auto
+ speed auto
+ media-type rj45
+!
+router ospf 1
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+control-plane
+!
+banner exec `
+**************************************************************************
+* IOSv - Cisco Systems Confidential                                      *
+*                                                                        *
+* Supplemental End User License Restrictions                             *
+*                                                                        *
+* This IOSv software is provided AS-IS without warranty of any kind.     *
+* Under no circumstances may this software be used separate from         *
+* the Cisco Modeling Labs Software that this software was provided       *
+*  with, or deployed or used as part of a production environment.        *
+*                                                                        *
+* By using the software, you agree to abide by the terms and             *
+* conditions of the Cisco End User License Agreement at                  *
+* http://www.cisco.com/go/eula.                                          *
+*                                                                        *
+* Unauthorized use or distribution of this software is expressly         *
+* prohibited.                                                            *
+**************************************************************************
+`
+banner incoming `
+**************************************************************************
+* IOSv - Cisco Systems Confidential                                      *
+*                                                                        *
+* Supplemental End User License Restrictions                             *
+*                                                                        *
+* This IOSv software is provided AS-IS without warranty of any kind.     *
+* Under no circumstances may this software be used separate from         *
+* the Cisco Modeling Labs Software that this software was provided       *
+*  with, or deployed or used as part of a production environment.        *
+*                                                                        *
+* By using the software, you agree to abide by the terms and             *
+* conditions of the Cisco End User License Agreement at                  *
+* http://www.cisco.com/go/eula.                                          *
+*                                                                        *
+* Unauthorized use or distribution of this software is expressly         *
+* prohibited.                                                            *
+**************************************************************************
+`
+banner login `
+**************************************************************************
+* IOSv - Cisco Systems Confidential                                      *
+*                                                                        *
+* Supplemental End User License Restrictions                             *
+*                                                                        *
+* This IOSv software is provided AS-IS without warranty of any kind.     *
+* Under no circumstances may this software be used separate from         *
+* the Cisco Modeling Labs Software that this software was provided       *
+*  with, or deployed or used as part of a production environment.        *
+*                                                                        *
+* By using the software, you agree to abide by the terms and             *
+* conditions of the Cisco End User License Agreement at                  *
+* http://www.cisco.com/go/eula.                                          *
+*                                                                        *
+* Unauthorized use or distribution of this software is expressly         *
+* prohibited.                                                            *
+**************************************************************************
+`
+!
+line con 0
+line aux 0
+line vty 0 4
+ login
+ transport input none
+!
+no scheduler allocate
+!
+end</entry>
+        </extensions>
+        <interface id="0" name="GigabitEthernet0/1"/>
+        <interface id="1" name="GigabitEthernet0/2"/>
+    </node>
+    <node name="RT2" type="SIMPLE" subtype="IOSv" location="598,224">
+        <extensions>
+            <entry key="Auto-generate config" type="Boolean">false</entry>
+            <entry key="config" type="String">!
+! Last configuration change at 11:05:06 UTC Mon Nov 13 2017
+!
+version 15.6
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname RT2
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+ethernet lmi ce
+!
+!
+!
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+ip cef
+no ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+redundancy
+!
+no cdp run
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback1
+ ip address 2.2.2.2 255.255.255.255
+ ip ospf 1 area 0
+!
+interface Tunnel1
+ ip address 100.0.0.2 255.255.255.0
+ keepalive 10 3
+ tunnel source 2.2.2.2
+ tunnel destination 1.1.1.1
+!
+interface GigabitEthernet0/0
+ ip address 10.255.0.218 255.255.0.0
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/1
+ ip address 10.0.2.1 255.255.255.0
+ ip ospf network point-to-point
+ ip ospf 1 area 0
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/2
+ ip address 192.168.2.254 255.255.255.0
+ duplex auto
+ speed auto
+ media-type rj45
+!
+router ospf 1
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+ip route 192.168.1.0 255.255.255.0 Tunnel1
+!
+!
+!
+!
+control-plane
+!
+banner exec `
+**************************************************************************
+* IOSv - Cisco Systems Confidential                                      *
+*                                                                        *
+* Supplemental End User License Restrictions                             *
+*                                                                        *
+* This IOSv software is provided AS-IS without warranty of any kind.     *
+* Under no circumstances may this software be used separate from         *
+* the Cisco Modeling Labs Software that this software was provided       *
+*  with, or deployed or used as part of a production environment.        *
+*                                                                        *
+* By using the software, you agree to abide by the terms and             *
+* conditions of the Cisco End User License Agreement at                  *
+* http://www.cisco.com/go/eula.                                          *
+*                                                                        *
+* Unauthorized use or distribution of this software is expressly         *
+* prohibited.                                                            *
+**************************************************************************
+`
+banner incoming `
+**************************************************************************
+* IOSv - Cisco Systems Confidential                                      *
+*                                                                        *
+* Supplemental End User License Restrictions                             *
+*                                                                        *
+* This IOSv software is provided AS-IS without warranty of any kind.     *
+* Under no circumstances may this software be used separate from         *
+* the Cisco Modeling Labs Software that this software was provided       *
+*  with, or deployed or used as part of a production environment.        *
+*                                                                        *
+* By using the software, you agree to abide by the terms and             *
+* conditions of the Cisco End User License Agreement at                  *
+* http://www.cisco.com/go/eula.                                          *
+*                                                                        *
+* Unauthorized use or distribution of this software is expressly         *
+* prohibited.                                                            *
+**************************************************************************
+`
+banner login `
+**************************************************************************
+* IOSv - Cisco Systems Confidential                                      *
+*                                                                        *
+* Supplemental End User License Restrictions                             *
+*                                                                        *
+* This IOSv software is provided AS-IS without warranty of any kind.     *
+* Under no circumstances may this software be used separate from         *
+* the Cisco Modeling Labs Software that this software was provided       *
+*  with, or deployed or used as part of a production environment.        *
+*                                                                        *
+* By using the software, you agree to abide by the terms and             *
+* conditions of the Cisco End User License Agreement at                  *
+* http://www.cisco.com/go/eula.                                          *
+*                                                                        *
+* Unauthorized use or distribution of this software is expressly         *
+* prohibited.                                                            *
+**************************************************************************
+`
+!
+line con 0
+line aux 0
+line vty 0 4
+ login
+ transport input none
+!
+no scheduler allocate
+!
+end</entry>
+        </extensions>
+        <interface id="0" name="GigabitEthernet0/1"/>
+        <interface id="1" name="GigabitEthernet0/2"/>
+    </node>
+    <node name="PC1" type="SIMPLE" subtype="IOSv" location="260,317">
+        <extensions>
+            <entry key="Auto-generate config" type="Boolean">false</entry>
+            <entry key="config" type="String">!
+! Last configuration change at 11:00:55 UTC Mon Nov 13 2017
+!
+version 15.6
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname PC1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+ethernet lmi ce
+!
+!
+!
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip cef
+no ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+redundancy
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0
+ ip address 10.255.0.215 255.255.0.0
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/1
+ ip address 192.168.1.1 255.255.255.0
+ duplex auto
+ speed auto
+ media-type rj45
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+ip route 0.0.0.0 0.0.0.0 192.168.1.254
+!
+!
+!
+!
+control-plane
+!
+banner exec `
+**************************************************************************
+* IOSv - Cisco Systems Confidential                                      *
+*                                                                        *
+* Supplemental End User License Restrictions                             *
+*                                                                        *
+* This IOSv software is provided AS-IS without warranty of any kind.     *
+* Under no circumstances may this software be used separate from         *
+* the Cisco Modeling Labs Software that this software was provided       *
+*  with, or deployed or used as part of a production environment.        *
+*                                                                        *
+* By using the software, you agree to abide by the terms and             *
+* conditions of the Cisco End User License Agreement at                  *
+* http://www.cisco.com/go/eula.                                          *
+*                                                                        *
+* Unauthorized use or distribution of this software is expressly         *
+* prohibited.                                                            *
+**************************************************************************
+`
+banner incoming `
+**************************************************************************
+* IOSv - Cisco Systems Confidential                                      *
+*                                                                        *
+* Supplemental End User License Restrictions                             *
+*                                                                        *
+* This IOSv software is provided AS-IS without warranty of any kind.     *
+* Under no circumstances may this software be used separate from         *
+* the Cisco Modeling Labs Software that this software was provided       *
+*  with, or deployed or used as part of a production environment.        *
+*                                                                        *
+* By using the software, you agree to abide by the terms and             *
+* conditions of the Cisco End User License Agreement at                  *
+* http://www.cisco.com/go/eula.                                          *
+*                                                                        *
+* Unauthorized use or distribution of this software is expressly         *
+* prohibited.                                                            *
+**************************************************************************
+`
+banner login `
+**************************************************************************
+* IOSv - Cisco Systems Confidential                                      *
+*                                                                        *
+* Supplemental End User License Restrictions                             *
+*                                                                        *
+* This IOSv software is provided AS-IS without warranty of any kind.     *
+* Under no circumstances may this software be used separate from         *
+* the Cisco Modeling Labs Software that this software was provided       *
+*  with, or deployed or used as part of a production environment.        *
+*                                                                        *
+* By using the software, you agree to abide by the terms and             *
+* conditions of the Cisco End User License Agreement at                  *
+* http://www.cisco.com/go/eula.                                          *
+*                                                                        *
+* Unauthorized use or distribution of this software is expressly         *
+* prohibited.                                                            *
+**************************************************************************
+`
+!
+line con 0
+line aux 0
+line vty 0 4
+ login
+ transport input none
+!
+no scheduler allocate
+!
+end</entry>
+        </extensions>
+        <interface id="0" name="GigabitEthernet0/1"/>
+    </node>
+    <node name="PC2" type="SIMPLE" subtype="IOSv" location="685,325">
+        <extensions>
+            <entry key="Auto-generate config" type="Boolean">false</entry>
+            <entry key="config" type="String">!
+! Last configuration change at 11:14:56 UTC Mon Nov 13 2017
+!
+version 15.6
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname PC2
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+ethernet lmi ce
+!
+!
+!
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip cef
+no ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+redundancy
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0
+ ip address 10.255.0.216 255.255.0.0
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/1
+ ip address 192.168.2.1 255.255.255.0
+ duplex auto
+ speed auto
+ media-type rj45
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+ip route 0.0.0.0 0.0.0.0 192.168.2.254
+!
+!
+!
+!
+control-plane
+!
+banner exec `
+**************************************************************************
+* IOSv - Cisco Systems Confidential                                      *
+*                                                                        *
+* Supplemental End User License Restrictions                             *
+*                                                                        *
+* This IOSv software is provided AS-IS without warranty of any kind.     *
+* Under no circumstances may this software be used separate from         *
+* the Cisco Modeling Labs Software that this software was provided       *
+*  with, or deployed or used as part of a production environment.        *
+*                                                                        *
+* By using the software, you agree to abide by the terms and             *
+* conditions of the Cisco End User License Agreement at                  *
+* http://www.cisco.com/go/eula.                                          *
+*                                                                        *
+* Unauthorized use or distribution of this software is expressly         *
+* prohibited.                                                            *
+**************************************************************************
+`
+banner incoming `
+**************************************************************************
+* IOSv - Cisco Systems Confidential                                      *
+*                                                                        *
+* Supplemental End User License Restrictions                             *
+*                                                                        *
+* This IOSv software is provided AS-IS without warranty of any kind.     *
+* Under no circumstances may this software be used separate from         *
+* the Cisco Modeling Labs Software that this software was provided       *
+*  with, or deployed or used as part of a production environment.        *
+*                                                                        *
+* By using the software, you agree to abide by the terms and             *
+* conditions of the Cisco End User License Agreement at                  *
+* http://www.cisco.com/go/eula.                                          *
+*                                                                        *
+* Unauthorized use or distribution of this software is expressly         *
+* prohibited.                                                            *
+**************************************************************************
+`
+banner login `
+**************************************************************************
+* IOSv - Cisco Systems Confidential                                      *
+*                                                                        *
+* Supplemental End User License Restrictions                             *
+*                                                                        *
+* This IOSv software is provided AS-IS without warranty of any kind.     *
+* Under no circumstances may this software be used separate from         *
+* the Cisco Modeling Labs Software that this software was provided       *
+*  with, or deployed or used as part of a production environment.        *
+*                                                                        *
+* By using the software, you agree to abide by the terms and             *
+* conditions of the Cisco End User License Agreement at                  *
+* http://www.cisco.com/go/eula.                                          *
+*                                                                        *
+* Unauthorized use or distribution of this software is expressly         *
+* prohibited.                                                            *
+**************************************************************************
+`
+!
+line con 0
+line aux 0
+line vty 0 4
+ login
+ transport input none
+!
+no scheduler allocate
+!
+end</entry>
+        </extensions>
+        <interface id="0" name="GigabitEthernet0/1"/>
+    </node>
+    <annotations/>
+    <connection dst="/virl:topology/virl:node[2]/virl:interface[1]" src="/virl:topology/virl:node[1]/virl:interface[1]"/>
+    <connection dst="/virl:topology/virl:node[3]/virl:interface[1]" src="/virl:topology/virl:node[2]/virl:interface[2]"/>
+    <connection dst="/virl:topology/virl:node[4]/virl:interface[1]" src="/virl:topology/virl:node[1]/virl:interface[2]"/>
+    <connection dst="/virl:topology/virl:node[5]/virl:interface[1]" src="/virl:topology/virl:node[3]/virl:interface[2]"/>
+</topology>
