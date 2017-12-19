@@ -1,0 +1,1449 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<topology xmlns="http://www.cisco.com/VIRL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="0.95" xsi:schemaLocation="http://www.cisco.com/VIRL https://raw.github.com/CiscoVIRL/schema/v0.95/virl.xsd">
+    <extensions>
+        <entry key="management_network" type="String">flat</entry>
+    </extensions>
+    <node name="R1" type="SIMPLE" subtype="IOSv" location="74,51">
+        <extensions>
+            <entry key="Auto-generate config" type="Boolean">false</entry>
+            <entry key="static_ip" type="String">172.16.1.61</entry>
+            <entry key="config" type="String">!
+! Last configuration change at 03:22:02 UTC Tue Feb 14 2017
+!
+version 15.6
+no service timestamps debug uptime
+no service timestamps log uptime
+no service password-encryption
+!
+hostname R1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+ethernet lmi ce
+!
+!
+!
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+ip cef
+ipv6 unicast-routing
+ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+redundancy
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0
+ ip address 172.16.1.61 255.255.255.0
+ duplex auto
+ speed auto
+ media-type rj45
+ no cdp enable
+!
+interface GigabitEthernet0/1
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+control-plane
+!
+banner exec `
+*******************************************************************************
+* This VM is intended for lab purposes only. It is runing IOSv, which is      *
+* strictly limited to use for evaluation, demonstration and IOS education.    *
+* IOSv is provided as-is and is not supported by Cisco's Technical Advisory   *
+* Center. Any use or disclosure, in whole or in part, of the IOSv Software or *
+* Documentation to any third party for any purposes is expressly prohibited   *
+* except as otherwise authorized by Cisco in writing.                         *
+*******************************************************************************
+`
+banner incoming `
+*******************************************************************************
+* This VM is intended for lab purposes only. It is runing IOSv, which is      *
+* strictly limited to use for evaluation, demonstration and IOS education.    *
+* IOSv is provided as-is and is not supported by Cisco's Technical Advisory   *
+* Center. Any use or disclosure, in whole or in part, of the IOSv Software or *
+* Documentation to any third party for any purposes is expressly prohibited   *
+* except as otherwise authorized by Cisco in writing.                         *
+*******************************************************************************
+`
+banner login `
+*******************************************************************************
+* This VM is intended for lab purposes only. It is runing IOSv, which is      *
+* strictly limited to use for evaluation, demonstration and IOS education.    *
+* IOSv is provided as-is and is not supported by Cisco's Technical Advisory   *
+* Center. Any use or disclosure, in whole or in part, of the IOSv Software or *
+* Documentation to any third party for any purposes is expressly prohibited   *
+* except as otherwise authorized by Cisco in writing.                         *
+*******************************************************************************
+`
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line aux 0
+line vty 0 4
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+ no login
+ autocommand  terminal monitor
+ autocommand-options nohangup
+ transport input telnet
+!
+no scheduler allocate
+!
+end</entry>
+        </extensions>
+        <interface id="0" name="GigabitEthernet0/1"/>
+    </node>
+    <node name="R2" type="SIMPLE" subtype="IOSv" location="146,51">
+        <extensions>
+            <entry key="Auto-generate config" type="Boolean">false</entry>
+            <entry key="static_ip" type="String">172.16.1.62</entry>
+            <entry key="config" type="String">!
+! Last configuration change at 03:22:25 UTC Tue Feb 14 2017
+!
+version 15.6
+no service timestamps debug uptime
+no service timestamps log uptime
+no service password-encryption
+!
+hostname R2
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+ethernet lmi ce
+!
+!
+!
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+ip cef
+ipv6 unicast-routing
+ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+redundancy
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0
+ ip address 172.16.1.62 255.255.255.0
+ duplex auto
+ speed auto
+ media-type rj45
+ no cdp enable
+!
+interface GigabitEthernet0/1
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+control-plane
+!
+banner exec `
+*******************************************************************************
+* This VM is intended for lab purposes only. It is runing IOSv, which is      *
+* strictly limited to use for evaluation, demonstration and IOS education.    *
+* IOSv is provided as-is and is not supported by Cisco's Technical Advisory   *
+* Center. Any use or disclosure, in whole or in part, of the IOSv Software or *
+* Documentation to any third party for any purposes is expressly prohibited   *
+* except as otherwise authorized by Cisco in writing.                         *
+*******************************************************************************
+`
+banner incoming `
+*******************************************************************************
+* This VM is intended for lab purposes only. It is runing IOSv, which is      *
+* strictly limited to use for evaluation, demonstration and IOS education.    *
+* IOSv is provided as-is and is not supported by Cisco's Technical Advisory   *
+* Center. Any use or disclosure, in whole or in part, of the IOSv Software or *
+* Documentation to any third party for any purposes is expressly prohibited   *
+* except as otherwise authorized by Cisco in writing.                         *
+*******************************************************************************
+`
+banner login `
+*******************************************************************************
+* This VM is intended for lab purposes only. It is runing IOSv, which is      *
+* strictly limited to use for evaluation, demonstration and IOS education.    *
+* IOSv is provided as-is and is not supported by Cisco's Technical Advisory   *
+* Center. Any use or disclosure, in whole or in part, of the IOSv Software or *
+* Documentation to any third party for any purposes is expressly prohibited   *
+* except as otherwise authorized by Cisco in writing.                         *
+*******************************************************************************
+`
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line aux 0
+line vty 0 4
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+ no login
+ autocommand  terminal monitor
+ autocommand-options nohangup
+ transport input telnet
+!
+no scheduler allocate
+!
+end</entry>
+        </extensions>
+        <interface id="0" name="GigabitEthernet0/1"/>
+    </node>
+    <node name="R3" type="SIMPLE" subtype="IOSv" location="206,51">
+        <extensions>
+            <entry key="Auto-generate config" type="Boolean">false</entry>
+            <entry key="static_ip" type="String">172.16.1.63</entry>
+            <entry key="config" type="String">!
+! Last configuration change at 03:22:44 UTC Tue Feb 14 2017
+!
+version 15.6
+no service timestamps debug uptime
+no service timestamps log uptime
+no service password-encryption
+!
+hostname R3
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+ethernet lmi ce
+!
+!
+!
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+ip cef
+ipv6 unicast-routing
+ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+redundancy
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0
+ ip address 172.16.1.63 255.255.255.0
+ duplex auto
+ speed auto
+ media-type rj45
+ no cdp enable
+!
+interface GigabitEthernet0/1
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+control-plane
+!
+banner exec `
+*******************************************************************************
+* This VM is intended for lab purposes only. It is runing IOSv, which is      *
+* strictly limited to use for evaluation, demonstration and IOS education.    *
+* IOSv is provided as-is and is not supported by Cisco's Technical Advisory   *
+* Center. Any use or disclosure, in whole or in part, of the IOSv Software or *
+* Documentation to any third party for any purposes is expressly prohibited   *
+* except as otherwise authorized by Cisco in writing.                         *
+*******************************************************************************
+`
+banner incoming `
+*******************************************************************************
+* This VM is intended for lab purposes only. It is runing IOSv, which is      *
+* strictly limited to use for evaluation, demonstration and IOS education.    *
+* IOSv is provided as-is and is not supported by Cisco's Technical Advisory   *
+* Center. Any use or disclosure, in whole or in part, of the IOSv Software or *
+* Documentation to any third party for any purposes is expressly prohibited   *
+* except as otherwise authorized by Cisco in writing.                         *
+*******************************************************************************
+`
+banner login `
+*******************************************************************************
+* This VM is intended for lab purposes only. It is runing IOSv, which is      *
+* strictly limited to use for evaluation, demonstration and IOS education.    *
+* IOSv is provided as-is and is not supported by Cisco's Technical Advisory   *
+* Center. Any use or disclosure, in whole or in part, of the IOSv Software or *
+* Documentation to any third party for any purposes is expressly prohibited   *
+* except as otherwise authorized by Cisco in writing.                         *
+*******************************************************************************
+`
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line aux 0
+line vty 0 4
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+ no login
+ autocommand  terminal monitor
+ autocommand-options nohangup
+ transport input telnet
+!
+no scheduler allocate
+!
+end</entry>
+        </extensions>
+        <interface id="0" name="GigabitEthernet0/1"/>
+    </node>
+    <node name="R4" type="SIMPLE" subtype="IOSv" location="278,51">
+        <extensions>
+            <entry key="Auto-generate config" type="Boolean">false</entry>
+            <entry key="static_ip" type="String">172.16.1.64</entry>
+            <entry key="config" type="String">!
+! Last configuration change at 03:23:22 UTC Tue Feb 14 2017
+!
+version 15.6
+no service timestamps debug uptime
+no service timestamps log uptime
+no service password-encryption
+!
+hostname R4
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+ethernet lmi ce
+!
+!
+!
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+ip cef
+ipv6 unicast-routing
+ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+redundancy
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0
+ ip address 172.16.1.64 255.255.255.0
+ duplex auto
+ speed auto
+ media-type rj45
+ no cdp enable
+!
+interface GigabitEthernet0/1
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+control-plane
+!
+banner exec `
+*******************************************************************************
+* This VM is intended for lab purposes only. It is runing IOSv, which is      *
+* strictly limited to use for evaluation, demonstration and IOS education.    *
+* IOSv is provided as-is and is not supported by Cisco's Technical Advisory   *
+* Center. Any use or disclosure, in whole or in part, of the IOSv Software or *
+* Documentation to any third party for any purposes is expressly prohibited   *
+* except as otherwise authorized by Cisco in writing.                         *
+*******************************************************************************
+`
+banner incoming `
+*******************************************************************************
+* This VM is intended for lab purposes only. It is runing IOSv, which is      *
+* strictly limited to use for evaluation, demonstration and IOS education.    *
+* IOSv is provided as-is and is not supported by Cisco's Technical Advisory   *
+* Center. Any use or disclosure, in whole or in part, of the IOSv Software or *
+* Documentation to any third party for any purposes is expressly prohibited   *
+* except as otherwise authorized by Cisco in writing.                         *
+*******************************************************************************
+`
+banner login `
+*******************************************************************************
+* This VM is intended for lab purposes only. It is runing IOSv, which is      *
+* strictly limited to use for evaluation, demonstration and IOS education.    *
+* IOSv is provided as-is and is not supported by Cisco's Technical Advisory   *
+* Center. Any use or disclosure, in whole or in part, of the IOSv Software or *
+* Documentation to any third party for any purposes is expressly prohibited   *
+* except as otherwise authorized by Cisco in writing.                         *
+*******************************************************************************
+`
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line aux 0
+line vty 0 4
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+ no login
+ autocommand  terminal monitor
+ autocommand-options nohangup
+ transport input telnet
+!
+no scheduler allocate
+!
+end</entry>
+        </extensions>
+        <interface id="0" name="GigabitEthernet0/1"/>
+    </node>
+    <node name="R5" type="SIMPLE" subtype="IOSv" location="279,99">
+        <extensions>
+            <entry key="Auto-generate config" type="Boolean">false</entry>
+            <entry key="static_ip" type="String">172.16.1.65</entry>
+            <entry key="config" type="String">!
+! Last configuration change at 03:23:43 UTC Tue Feb 14 2017
+!
+version 15.6
+no service timestamps debug uptime
+no service timestamps log uptime
+no service password-encryption
+!
+hostname R5
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+ethernet lmi ce
+!
+!
+!
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+ip cef
+ipv6 unicast-routing
+ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+redundancy
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0
+ ip address 172.16.1.65 255.255.255.0
+ duplex auto
+ speed auto
+ media-type rj45
+ no cdp enable
+!
+interface GigabitEthernet0/1
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+control-plane
+!
+banner exec `
+*******************************************************************************
+* This VM is intended for lab purposes only. It is runing IOSv, which is      *
+* strictly limited to use for evaluation, demonstration and IOS education.    *
+* IOSv is provided as-is and is not supported by Cisco's Technical Advisory   *
+* Center. Any use or disclosure, in whole or in part, of the IOSv Software or *
+* Documentation to any third party for any purposes is expressly prohibited   *
+* except as otherwise authorized by Cisco in writing.                         *
+*******************************************************************************
+`
+banner incoming `
+*******************************************************************************
+* This VM is intended for lab purposes only. It is runing IOSv, which is      *
+* strictly limited to use for evaluation, demonstration and IOS education.    *
+* IOSv is provided as-is and is not supported by Cisco's Technical Advisory   *
+* Center. Any use or disclosure, in whole or in part, of the IOSv Software or *
+* Documentation to any third party for any purposes is expressly prohibited   *
+* except as otherwise authorized by Cisco in writing.                         *
+*******************************************************************************
+`
+banner login `
+*******************************************************************************
+* This VM is intended for lab purposes only. It is runing IOSv, which is      *
+* strictly limited to use for evaluation, demonstration and IOS education.    *
+* IOSv is provided as-is and is not supported by Cisco's Technical Advisory   *
+* Center. Any use or disclosure, in whole or in part, of the IOSv Software or *
+* Documentation to any third party for any purposes is expressly prohibited   *
+* except as otherwise authorized by Cisco in writing.                         *
+*******************************************************************************
+`
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line aux 0
+line vty 0 4
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+ no login
+ autocommand  terminal monitor
+ autocommand-options nohangup
+ transport input telnet
+!
+no scheduler allocate
+!
+end</entry>
+        </extensions>
+        <interface id="0" name="GigabitEthernet0/1"/>
+    </node>
+    <node name="R6" type="SIMPLE" subtype="IOSv" location="279,150">
+        <extensions>
+            <entry key="Auto-generate config" type="Boolean">false</entry>
+            <entry key="static_ip" type="String">172.16.1.66</entry>
+            <entry key="config" type="String">!
+! Last configuration change at 03:24:01 UTC Tue Feb 14 2017
+!
+version 15.6
+no service timestamps debug uptime
+no service timestamps log uptime
+no service password-encryption
+!
+hostname R6
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+ethernet lmi ce
+!
+!
+!
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+ip cef
+ipv6 unicast-routing
+ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+redundancy
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0
+ ip address 172.16.1.66 255.255.255.0
+ duplex auto
+ speed auto
+ media-type rj45
+ no cdp enable
+!
+interface GigabitEthernet0/1
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+control-plane
+!
+banner exec `
+*******************************************************************************
+* This VM is intended for lab purposes only. It is runing IOSv, which is      *
+* strictly limited to use for evaluation, demonstration and IOS education.    *
+* IOSv is provided as-is and is not supported by Cisco's Technical Advisory   *
+* Center. Any use or disclosure, in whole or in part, of the IOSv Software or *
+* Documentation to any third party for any purposes is expressly prohibited   *
+* except as otherwise authorized by Cisco in writing.                         *
+*******************************************************************************
+`
+banner incoming `
+*******************************************************************************
+* This VM is intended for lab purposes only. It is runing IOSv, which is      *
+* strictly limited to use for evaluation, demonstration and IOS education.    *
+* IOSv is provided as-is and is not supported by Cisco's Technical Advisory   *
+* Center. Any use or disclosure, in whole or in part, of the IOSv Software or *
+* Documentation to any third party for any purposes is expressly prohibited   *
+* except as otherwise authorized by Cisco in writing.                         *
+*******************************************************************************
+`
+banner login `
+*******************************************************************************
+* This VM is intended for lab purposes only. It is runing IOSv, which is      *
+* strictly limited to use for evaluation, demonstration and IOS education.    *
+* IOSv is provided as-is and is not supported by Cisco's Technical Advisory   *
+* Center. Any use or disclosure, in whole or in part, of the IOSv Software or *
+* Documentation to any third party for any purposes is expressly prohibited   *
+* except as otherwise authorized by Cisco in writing.                         *
+*******************************************************************************
+`
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line aux 0
+line vty 0 4
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+ no login
+ autocommand  terminal monitor
+ autocommand-options nohangup
+ transport input telnet
+!
+no scheduler allocate
+!
+end</entry>
+        </extensions>
+        <interface id="0" name="GigabitEthernet0/1"/>
+    </node>
+    <node name="R7" type="SIMPLE" subtype="IOSv" location="207,150">
+        <extensions>
+            <entry key="Auto-generate config" type="Boolean">false</entry>
+            <entry key="static_ip" type="String">172.16.1.67</entry>
+            <entry key="config" type="String">!
+! Last configuration change at 03:24:18 UTC Tue Feb 14 2017
+!
+version 15.6
+no service timestamps debug uptime
+no service timestamps log uptime
+no service password-encryption
+!
+hostname R7
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+ethernet lmi ce
+!
+!
+!
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+ip cef
+ipv6 unicast-routing
+ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+redundancy
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0
+ ip address 172.16.1.67 255.255.255.0
+ duplex auto
+ speed auto
+ media-type rj45
+ no cdp enable
+!
+interface GigabitEthernet0/1
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+control-plane
+!
+banner exec `
+*******************************************************************************
+* This VM is intended for lab purposes only. It is runing IOSv, which is      *
+* strictly limited to use for evaluation, demonstration and IOS education.    *
+* IOSv is provided as-is and is not supported by Cisco's Technical Advisory   *
+* Center. Any use or disclosure, in whole or in part, of the IOSv Software or *
+* Documentation to any third party for any purposes is expressly prohibited   *
+* except as otherwise authorized by Cisco in writing.                         *
+*******************************************************************************
+`
+banner incoming `
+*******************************************************************************
+* This VM is intended for lab purposes only. It is runing IOSv, which is      *
+* strictly limited to use for evaluation, demonstration and IOS education.    *
+* IOSv is provided as-is and is not supported by Cisco's Technical Advisory   *
+* Center. Any use or disclosure, in whole or in part, of the IOSv Software or *
+* Documentation to any third party for any purposes is expressly prohibited   *
+* except as otherwise authorized by Cisco in writing.                         *
+*******************************************************************************
+`
+banner login `
+*******************************************************************************
+* This VM is intended for lab purposes only. It is runing IOSv, which is      *
+* strictly limited to use for evaluation, demonstration and IOS education.    *
+* IOSv is provided as-is and is not supported by Cisco's Technical Advisory   *
+* Center. Any use or disclosure, in whole or in part, of the IOSv Software or *
+* Documentation to any third party for any purposes is expressly prohibited   *
+* except as otherwise authorized by Cisco in writing.                         *
+*******************************************************************************
+`
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line aux 0
+line vty 0 4
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+ no login
+ autocommand  terminal monitor
+ autocommand-options nohangup
+ transport input telnet
+!
+no scheduler allocate
+!
+end</entry>
+        </extensions>
+        <interface id="0" name="GigabitEthernet0/1"/>
+    </node>
+    <node name="R8" type="SIMPLE" subtype="IOSv" location="147,150">
+        <extensions>
+            <entry key="Auto-generate config" type="Boolean">false</entry>
+            <entry key="static_ip" type="String">172.16.1.68</entry>
+            <entry key="config" type="String">!
+! Last configuration change at 03:24:29 UTC Tue Feb 14 2017
+!
+version 15.6
+no service timestamps debug uptime
+no service timestamps log uptime
+no service password-encryption
+!
+hostname R8
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+ethernet lmi ce
+!
+!
+!
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+ip cef
+ipv6 unicast-routing
+ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+redundancy
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0
+ ip address 172.16.1.68 255.255.255.0
+ duplex auto
+ speed auto
+ media-type rj45
+ no cdp enable
+!
+interface GigabitEthernet0/1
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+control-plane
+!
+banner exec `
+*******************************************************************************
+* This VM is intended for lab purposes only. It is runing IOSv, which is      *
+* strictly limited to use for evaluation, demonstration and IOS education.    *
+* IOSv is provided as-is and is not supported by Cisco's Technical Advisory   *
+* Center. Any use or disclosure, in whole or in part, of the IOSv Software or *
+* Documentation to any third party for any purposes is expressly prohibited   *
+* except as otherwise authorized by Cisco in writing.                         *
+*******************************************************************************
+`
+banner incoming `
+*******************************************************************************
+* This VM is intended for lab purposes only. It is runing IOSv, which is      *
+* strictly limited to use for evaluation, demonstration and IOS education.    *
+* IOSv is provided as-is and is not supported by Cisco's Technical Advisory   *
+* Center. Any use or disclosure, in whole or in part, of the IOSv Software or *
+* Documentation to any third party for any purposes is expressly prohibited   *
+* except as otherwise authorized by Cisco in writing.                         *
+*******************************************************************************
+`
+banner login `
+*******************************************************************************
+* This VM is intended for lab purposes only. It is runing IOSv, which is      *
+* strictly limited to use for evaluation, demonstration and IOS education.    *
+* IOSv is provided as-is and is not supported by Cisco's Technical Advisory   *
+* Center. Any use or disclosure, in whole or in part, of the IOSv Software or *
+* Documentation to any third party for any purposes is expressly prohibited   *
+* except as otherwise authorized by Cisco in writing.                         *
+*******************************************************************************
+`
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line aux 0
+line vty 0 4
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+ no login
+ autocommand  terminal monitor
+ autocommand-options nohangup
+ transport input telnet
+!
+no scheduler allocate
+!
+end</entry>
+        </extensions>
+        <interface id="0" name="GigabitEthernet0/1"/>
+    </node>
+    <node name="R9" type="SIMPLE" subtype="IOSv" location="75,150">
+        <extensions>
+            <entry key="Auto-generate config" type="Boolean">false</entry>
+            <entry key="static_ip" type="String">172.16.1.69</entry>
+            <entry key="config" type="String">!
+! Last configuration change at 03:24:29 UTC Tue Feb 14 2017
+!
+version 15.6
+no service timestamps debug uptime
+no service timestamps log uptime
+no service password-encryption
+!
+hostname R9
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+ethernet lmi ce
+!
+!
+!
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+ip cef
+ipv6 unicast-routing
+ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+redundancy
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0
+ ip address 172.16.1.69 255.255.255.0
+ duplex auto
+ speed auto
+ media-type rj45
+ no cdp enable
+!
+interface GigabitEthernet0/1
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+control-plane
+!
+banner exec `
+*******************************************************************************
+* This VM is intended for lab purposes only. It is runing IOSv, which is      *
+* strictly limited to use for evaluation, demonstration and IOS education.    *
+* IOSv is provided as-is and is not supported by Cisco's Technical Advisory   *
+* Center. Any use or disclosure, in whole or in part, of the IOSv Software or *
+* Documentation to any third party for any purposes is expressly prohibited   *
+* except as otherwise authorized by Cisco in writing.                         *
+*******************************************************************************
+`
+banner incoming `
+*******************************************************************************
+* This VM is intended for lab purposes only. It is runing IOSv, which is      *
+* strictly limited to use for evaluation, demonstration and IOS education.    *
+* IOSv is provided as-is and is not supported by Cisco's Technical Advisory   *
+* Center. Any use or disclosure, in whole or in part, of the IOSv Software or *
+* Documentation to any third party for any purposes is expressly prohibited   *
+* except as otherwise authorized by Cisco in writing.                         *
+*******************************************************************************
+`
+banner login `
+*******************************************************************************
+* This VM is intended for lab purposes only. It is runing IOSv, which is      *
+* strictly limited to use for evaluation, demonstration and IOS education.    *
+* IOSv is provided as-is and is not supported by Cisco's Technical Advisory   *
+* Center. Any use or disclosure, in whole or in part, of the IOSv Software or *
+* Documentation to any third party for any purposes is expressly prohibited   *
+* except as otherwise authorized by Cisco in writing.                         *
+*******************************************************************************
+`
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line aux 0
+line vty 0 4
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+ no login
+ autocommand  terminal monitor
+ autocommand-options nohangup
+ transport input telnet
+!
+no scheduler allocate
+!
+end</entry>
+        </extensions>
+        <interface id="0" name="GigabitEthernet0/1"/>
+    </node>
+    <node name="R10" type="SIMPLE" subtype="IOSv" location="75,99">
+        <extensions>
+            <entry key="Auto-generate config" type="Boolean">false</entry>
+            <entry key="static_ip" type="String">172.16.1.70</entry>
+            <entry key="config" type="String">!
+! Last configuration change at 03:24:18 UTC Tue Feb 14 2017
+!
+version 15.6
+no service timestamps debug uptime
+no service timestamps log uptime
+no service password-encryption
+!
+hostname R10
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+ethernet lmi ce
+!
+!
+!
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+no ip domain lookup
+ip cef
+ipv6 unicast-routing
+ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+redundancy
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0
+ ip address 172.16.1.70 255.255.255.0
+ duplex auto
+ speed auto
+ media-type rj45
+ no cdp enable
+!
+interface GigabitEthernet0/1
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+!
+!
+!
+!
+control-plane
+!
+banner exec `
+*******************************************************************************
+* This VM is intended for lab purposes only. It is runing IOSv, which is      *
+* strictly limited to use for evaluation, demonstration and IOS education.    *
+* IOSv is provided as-is and is not supported by Cisco's Technical Advisory   *
+* Center. Any use or disclosure, in whole or in part, of the IOSv Software or *
+* Documentation to any third party for any purposes is expressly prohibited   *
+* except as otherwise authorized by Cisco in writing.                         *
+*******************************************************************************
+`
+banner incoming `
+*******************************************************************************
+* This VM is intended for lab purposes only. It is runing IOSv, which is      *
+* strictly limited to use for evaluation, demonstration and IOS education.    *
+* IOSv is provided as-is and is not supported by Cisco's Technical Advisory   *
+* Center. Any use or disclosure, in whole or in part, of the IOSv Software or *
+* Documentation to any third party for any purposes is expressly prohibited   *
+* except as otherwise authorized by Cisco in writing.                         *
+*******************************************************************************
+`
+banner login `
+*******************************************************************************
+* This VM is intended for lab purposes only. It is runing IOSv, which is      *
+* strictly limited to use for evaluation, demonstration and IOS education.    *
+* IOSv is provided as-is and is not supported by Cisco's Technical Advisory   *
+* Center. Any use or disclosure, in whole or in part, of the IOSv Software or *
+* Documentation to any third party for any purposes is expressly prohibited   *
+* except as otherwise authorized by Cisco in writing.                         *
+*******************************************************************************
+`
+!
+line con 0
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+line aux 0
+line vty 0 4
+ exec-timeout 0 0
+ privilege level 15
+ logging synchronous
+ no login
+ autocommand  terminal monitor
+ autocommand-options nohangup
+ transport input telnet
+!
+no scheduler allocate
+!
+end</entry>
+        </extensions>
+        <interface id="0" name="GigabitEthernet0/1"/>
+    </node>
+    <node name="Multipoint" type="SIMPLE" subtype="Unmanaged Switch" location="173,98">
+        <interface id="0" name="link1"/>
+        <interface id="1" name="link2"/>
+        <interface id="2" name="link3"/>
+        <interface id="3" name="link4"/>
+        <interface id="4" name="link5"/>
+        <interface id="5" name="link6"/>
+        <interface id="6" name="link7"/>
+        <interface id="7" name="link8"/>
+        <interface id="8" name="link9"/>
+        <interface id="9" name="link10"/>
+    </node>
+    <annotations/>
+    <connection dst="/virl:topology/virl:node[11]/virl:interface[1]" src="/virl:topology/virl:node[1]/virl:interface[1]"/>
+    <connection dst="/virl:topology/virl:node[11]/virl:interface[2]" src="/virl:topology/virl:node[2]/virl:interface[1]"/>
+    <connection dst="/virl:topology/virl:node[11]/virl:interface[3]" src="/virl:topology/virl:node[3]/virl:interface[1]"/>
+    <connection dst="/virl:topology/virl:node[11]/virl:interface[4]" src="/virl:topology/virl:node[4]/virl:interface[1]"/>
+    <connection dst="/virl:topology/virl:node[11]/virl:interface[5]" src="/virl:topology/virl:node[5]/virl:interface[1]"/>
+    <connection dst="/virl:topology/virl:node[11]/virl:interface[6]" src="/virl:topology/virl:node[6]/virl:interface[1]"/>
+    <connection dst="/virl:topology/virl:node[11]/virl:interface[7]" src="/virl:topology/virl:node[7]/virl:interface[1]"/>
+    <connection dst="/virl:topology/virl:node[11]/virl:interface[8]" src="/virl:topology/virl:node[8]/virl:interface[1]"/>
+    <connection dst="/virl:topology/virl:node[11]/virl:interface[9]" src="/virl:topology/virl:node[9]/virl:interface[1]"/>
+    <connection dst="/virl:topology/virl:node[11]/virl:interface[10]" src="/virl:topology/virl:node[10]/virl:interface[1]"/>
+</topology>
